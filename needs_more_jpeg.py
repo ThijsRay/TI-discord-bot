@@ -9,4 +9,5 @@ async def url_to_img(url):
 
 
 async def compress_img(img, filename):
+    img = img.convert("RGB")
     img.save(filename, 'JPEG', quality=1)
