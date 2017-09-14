@@ -2,6 +2,8 @@
 import discord
 from discord.ext import commands
 import random
+import needs_more_jpeg as nmj
+
 
 description = '''An example bot to showcase the discord.ext.commands extension
 module.
@@ -55,6 +57,11 @@ async def repeat(times : int, content='repeating...'):
 async def joined(member : discord.Member):
     """Says when a member joined."""
     await bot.say('{0.name} joined in {0.joined_at}'.format(member))
+
+@bot.command()
+async def needs_more_jpeg(url: str):
+    nmj.compress_img(nmj.url_to_img(url), 'temp.jpeg')
+    bot.send_file('temp.jpeg')
 
 
 @bot.group(pass_context=True)
