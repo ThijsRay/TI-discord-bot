@@ -2,10 +2,10 @@
 import discord
 from discord.ext import commands
 import random
+import needs_more_jpeg as nmj
 
-description = '''An example bot to showcase the discord.ext.commands extension
-module.
-There are a number of utility commands being showcased here.'''
+
+description = '''TI bot best bot'''
 bot = commands.Bot(command_prefix='!', description=description)
 
 @bot.event
@@ -14,12 +14,6 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-
-
-@bot.command()
-async def add(left : int, right : int):
-    """Adds two numbers together."""
-    await bot.say(left + right)
 
 
 @bot.command()
@@ -57,6 +51,14 @@ async def joined(member : discord.Member):
     await bot.say('{0.name} joined in {0.joined_at}'.format(member))
 
 
+@bot.command(pass_context=True)
+async def needs_more_jpeg(context, url: str):
+    """Adds a bit more JPEG to the url"""
+    channel = context.message.channel
+    await nmj.compress_img(await nmj.url_to_img(url), 'temp.jpeg')
+    await bot.send_file(channel, 'temp.jpeg')
+
+
 @bot.group(pass_context=True)
 async def cool(ctx):
     """Says if a user is cool.
@@ -80,3 +82,4 @@ def get_token():
 
 
 bot.run(get_token())
+bot.close()
