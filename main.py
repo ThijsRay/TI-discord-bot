@@ -15,20 +15,6 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
-
-# @bot.command()
-# async def roll(dice : str):
-#     """Rolls a dice in NdN format."""
-#     try:
-#         rolls, limit = map(int, dice.split('d'))
-#     except Exception:
-#         await bot.say('Format has to be in NdN!')
-#         return
-#
-#     result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-#     await bot.say(result)
-
-
 @bot.command(description='For when you wanna settle the score some other way')
 async def choose(*choices : str):
     """Chooses between multiple choices."""
@@ -58,6 +44,9 @@ async def needsmorejpeg(context, url: str):
     await nmj.compress_img(await nmj.url_to_img(url), 'temp.jpeg')
     await bot.send_file(channel, 'temp.jpeg')
 
+@bot.command()
+async def anthem():
+    await bot.say('https://cdn.discordapp.com/attachments/357261287740145665/358184959728418816/andy_jesus.mp4')
 
 @bot.group(pass_context=True)
 async def cool(ctx):
