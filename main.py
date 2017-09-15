@@ -15,6 +15,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
+
 @bot.command(description='For when you wanna settle the score some other way')
 async def choose(*choices : str):
     """Chooses between multiple choices."""
@@ -48,19 +49,16 @@ async def needsmorejpeg(context, url: str):
 async def anthem():
     await bot.say('https://cdn.discordapp.com/attachments/357261287740145665/358184959728418816/andy_jesus.mp4')
 
-@bot.group(pass_context=True)
-async def cool(ctx):
-    """Says if a user is cool.
-    In reality this just checks if a subcommand is being invoked.
-    """
-    if ctx.invoked_subcommand is None:
-        await bot.say('No, {0.subcommand_passed} is not cool'.format(ctx))
 
-
-@cool.command(name='Andy')
-async def _bot():
-    """Is the bot cool?"""
-    await bot.say('Yes, Andy is cool.')
+@bot.group()
+async def cool(name: str):
+    name = name.lower()
+    if name == 'bot':
+        await bot.say('Yes, I\'m quite cool.')
+    elif name == 'andy':
+        await bot.say('Yes, Andy is very cool.')
+    else:
+        await bot.say('No, {} is not cool.'.format(name))
 
 
 def get_token():
