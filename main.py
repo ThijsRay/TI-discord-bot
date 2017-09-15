@@ -57,10 +57,10 @@ async def cool(ctx):
         await bot.say('No, {0.subcommand_passed} is not cool'.format(ctx))
 
 
-@cool.command(name='bot')
+@cool.command(name='Andy')
 async def _bot():
     """Is the bot cool?"""
-    await bot.say('Yes, the bot is cool.')
+    await bot.say('Yes, Andy is cool.')
 
 
 def get_token():
