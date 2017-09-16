@@ -40,6 +40,13 @@ async def joined(member : discord.Member):
 @bot.command(pass_context=True, description='Adds more jpeg and shrinks')
 async def needsmorejpeg(context, url: str, times: int):
     """Adds a bit more JPEG to the url"""
+    if times is None:
+        times = 0
+    elif times < 0:
+        times = 0
+    elif times > 4:
+        times = 4   
+    
     channel = context.message.channel
     await nmj.compress_img(await nmj.url_to_img(url), 'temp.jpeg', times)
     await bot.send_file(channel, 'temp.jpeg')
