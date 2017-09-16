@@ -21,7 +21,7 @@ async def choose(*choices : str):
     await bot.say(random.choice(choices))
 
 
-@bot.command(description='For when you want the bot to repeat something (Max:5)'
+@bot.command(description='For when you want the bot to repeat something (Max:5)')
 async def repeat(times : int, content='repeating...'):
     """Repeats a message multiple times."""
     if times > 5:
