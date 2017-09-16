@@ -45,6 +45,7 @@ async def needsmorejpeg(context, url: str):
     await nmj.compress_img(await nmj.url_to_img(url), 'temp.jpeg')
     await bot.send_file(channel, 'temp.jpeg')
 
+
 @bot.command()
 async def anthem():
     await bot.say('https://cdn.discordapp.com/attachments/357261287740145665/358184959728418816/andy_jesus.mp4')
@@ -52,13 +53,15 @@ async def anthem():
 
 @bot.group()
 async def cool(name: str):
-    name = name.lower()
-    if name == 'bot':
+    if name.lower() == 'bot':
         await bot.say('Yes, I\'m quite cool.')
-    elif name == 'andy':
+    elif name.lower() == 'andy':
         await bot.say('Yes, Andy is very cool.')
     else:
-        await bot.say('No, {} is not cool.'.format(name))
+        if random.random() < 0.1:
+            await bot.say('Yes, {} is cool.'.format(name))
+        else:
+            await bot.say('No, {} is not cool.'.format(name))
 
 
 def get_token():
