@@ -4,7 +4,6 @@ from discord.ext import commands
 import random
 import needs_more_jpeg as nmj
 
-
 description = '''TI bot best bot'''
 bot = commands.Bot(command_prefix='!', description=description)
 
@@ -22,7 +21,7 @@ async def choose(*choices : str):
     await bot.say(random.choice(choices))
 
 
-@bot.command()
+@bot.command(description='For when you want the bot to repeat something (Max:5)'
 async def repeat(times : int, content='repeating...'):
     """Repeats a message multiple times."""
     if times > 5:
@@ -32,17 +31,17 @@ async def repeat(times : int, content='repeating...'):
         await bot.say(content)
 
 
-@bot.command()
+@bot.command(description='Tells you when someone joined discord')
 async def joined(member : discord.Member):
     """Says when a member joined."""
     await bot.say('{0.name} joined in {0.joined_at}'.format(member))
 
 
-@bot.command(pass_context=True)
-async def needsmorejpeg(context, url: str):
+@bot.command(pass_context=True, description='Adds more jpeg and shrinks')
+async def needsmorejpeg(context, url: str, times: int):
     """Adds a bit more JPEG to the url"""
     channel = context.message.channel
-    await nmj.compress_img(await nmj.url_to_img(url), 'temp.jpeg')
+    await nmj.compress_img(await nmj.url_to_img(url), 'temp.jpeg', times)
     await bot.send_file(channel, 'temp.jpeg')
 
 
