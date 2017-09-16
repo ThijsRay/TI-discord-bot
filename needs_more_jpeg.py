@@ -8,6 +8,9 @@ async def url_to_img(url):
     return Image.open(BytesIO(response.content))
 
 
-async def compress_img(img, filename):
+async def compress_img(img, filename, times):
     img = img.convert("RGB")
+    ratio = math.pow(2 , times);
+    if !(times == None):
+        img.resize((img.size[0]*ratio,img.size[1]*ratio), Image.ANTIALIAS)
     img.save(filename, 'JPEG', quality=1)
