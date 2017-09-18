@@ -20,6 +20,7 @@ async def choose(*choices : str):
     """Chooses between multiple choices."""
     await bot.say(random.choice(choices))
 
+    
 @bot.command(description='Anthem of the Discord server')
 async def anthem():
     await bot.say('https://cdn.discordapp.com/attachments/357261287740145665/358184959728418816/andy_jesus.mp4')
